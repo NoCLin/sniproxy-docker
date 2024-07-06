@@ -1,0 +1,12 @@
+version: '3'
+services:
+  sniproxy:
+    image: sniproxy
+    build:
+      context: .
+    container_name: sniproxy
+    ports:
+      - "80:80"
+      - "443:443"
+    # replace with your socks proxy address
+    command: ./gost -L sni://:80 -L sni://:443 -F socks5://192.168.1.1:1080
